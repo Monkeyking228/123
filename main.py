@@ -2,10 +2,27 @@ from pygame import *
 
 
 
+class Player(GameSprite):
+    def update(self):
+        keys_pressed = key.get_pressed()
+        if keys_pressed[K_w]:
+                self.rect.y -= self.speed
+    
+        keys_pressed = key.get_pressed()
+        if keys_pressed[K_s]:
+                self.rect.y += self.speed
 
-       
+        keys_pressed = key.get_pressed()
+        if keys_pressed[K_a]:
+                self.rect.x -= self.speed
 
-sprite1 = transform.scale(image.load('ракеткабомбапетарда.jpeg'), (10, 100))
+        keys_pressed = key.get_pressed()
+        if keys_pressed[K_d]:
+                self.rect.x += self.speed
+
+
+
+sprite1 = transform.scale(image.load('raketa.jpeg'), (10, 100))
 
 
 
@@ -16,10 +33,9 @@ FPS = 60
 clock.tick(FPS)
 window = display.set_mode((700, 500))
 display.set_caption('Пинг понг')
-background = transform.scale(image.load('galaxy.jpg'), (700, 500))
+background = transform.scale(image.load('galaxy.png'), (700, 500))
 mixer.init()
-mixer.music.load('space.ogg')
-mixer.music.play()
+
 
 
 
@@ -45,4 +61,3 @@ while game:
 
     display.update()
     clock.tick(FPS)
-            
