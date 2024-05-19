@@ -1,6 +1,12 @@
 from pygame import *
 from random import *
 
+score1 = 0
+score2 = 0
+
+font.init()
+font1 = font.Font(None, 36)
+
 
 
 class GameSprite(sprite.Sprite):
@@ -34,13 +40,20 @@ class Enemy(GameSprite):
 
 class Ball(GameSprite):
     def update(self):
+        global score1
+        global score2
         self.rect.x += self.speedX
         self.rect.y += self.speedY
         if self.rect.x <= 0:
-            self.rect.x = 250
+            self.rect.x = 500
+            score2 = score2 + 1
+
 
         if self.rect.x >= 650:
-            self.rect.x = 250
+            self.rect.x = 100
+            score1 = score1 + 1
+
+
 
         if self.rect.y <= 0:
             self.speedY *= -1
@@ -85,8 +98,8 @@ while game:
         sprite2.update()
         sprite3.reset()
         sprite3.update()
-        display.update() 
-
+        text1 = font1.render(str(score1) + ':' + str(score2), 1, (255, 255, 255))
+        window.blit(text1, (330, 50))
 
 
     def reset(self):
